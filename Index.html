@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>I Know Who It Is 👀</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg, #ffd6e7, #fff1f6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: #4b2736;
+}
+
+/* Falling flowers */
+
+.petal {
+  position: fixed;
+  top: -30px;
+  font-size: 20px;
+  animation: fall linear infinite;
+  opacity: .7;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+/* Main container */
+
+.container {
+  width: 90%;
+  max-width: 430px;
+  text-align: center;
+}
+
+/* First screen */
+
+.envelope {
+  background: white;
+  border-radius: 18px;
+  padding: 35px 25px;
+  box-shadow: 0 15px 40px rgba(100, 30, 60, .2);
+  animation: appear .7s ease;
+}
+
+.envelope h1 {
+  font-size: 27px;
+  margin-bottom: 12px;
+}
+
+.envelope p {
+  color: #87606f;
+  line-height: 1.7;
+}
+
+/* Buttons */
+
+button {
+  border: none;
+  background: #e85d8f;
+  color: white;
+  padding: 13px 25px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+  box-shadow: 0 5px 15px rgba(232, 93, 143, .3);
+  transition: .2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: scale(.95);
+}
+
+/* Letter */
+
+.letter {
+  display: none;
+  background: #fffdf8;
+  padding: 30px 25px;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(80,40,50,.25);
+  text-align: left;
+  animation: open .7s ease;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.letter h2 {
+  text-align: center;
+  color: #d94f82;
+  margin-bottom: 25px;
+}
+
+#message {
+  font-size: 17px;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+.signature {
+  text-align: right;
+  margin-top: 25px;
+  font-style: italic;
+  color: #765362;
+}
+
+/* Reveal */
+
+.reveal {
+  display: none;
+  background: white;
+  padding: 35px 25px;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(100,30,60,.2);
+  text-align: center;
+  animation: open .7s ease;
+}
+
+.reveal h1 {
+  font-size: 30px;
+  color: #d94f82;
+}
+
+.reveal p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #654452;
+}
+
+/* Animations */
+
+@keyframes open {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Falling flowers -->
+
+<div class="petal" style="left:10%; animation-duration:8s;">🌸</div>
+<div class="petal" style="left:30%; animation-duration:11s;">🌷</div>
+<div class="petal" style="left:55%; animation-duration:9s;">🌸</div>
+<div class="petal" style="left:80%; animation-duration:12s;">🌷</div>
+
+
+<div class="container">
+
+  <!-- Opening -->
+
+  <div class="envelope" id="envelope">
+
+    <div style="font-size:60px;">👀</div>
+
+    <h1>I Know Who It Is.</h1>
+
+    <p>
+      You kept saying you don't have a crush...
+      <br><br>
+
+      But I told you I know who it is.
+      <br><br>
+
+      So I figured I'd finally tell you.
+    </p>
+
+    <button onclick="openLetter()">
+      Tell Me Who 👀
+    </button>
+
+  </div>
+
+
+  <!-- Letter -->
+
+  <div class="letter" id="letter">
+
+    <h2>Alright, I'll Tell You...</h2>
+
+    <div id="message"></div>
+
+    <div class="signature">
+      — You already know who you are... maybe.
+    </div>
+
+    <button onclick="reveal()">
+      Finally Tell Me
+    </button>
+
+  </div>
+
+
+  <!-- Prank reveal -->
+
+  <div class="reveal" id="reveal">
+
+    <div style="font-size:70px;">💀</div>
+
+    <h1>Never Mind.</h1>
+
+    <p>
+      I was actually going to tell you...
+    </p>
+
+    <p>
+      But then I thought about it.
+    </p>
+
+    <p>
+      And decided...
+    </p>
+
+    <p>
+      <strong>I'm not telling you 💀</strong>
+    </p>
+
+    <p>
+      You can keep saying you don't have a crush though 😭
+    </p>
+
+    <button onclick="location.reload()">
+      Try Again 👀
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/*
+   The confession text
+*/
+
+const text = `Alright, alright.
+
+You kept insisting that you don't have a crush.
+
+And I kept telling you that I know who it is.
+
+So yes...
+
+I actually know.
+
+I've been thinking about whether I should tell you for a while.
+
+But honestly, the funny thing is...
+
+while I was figuring out who your crush might be,
+I started thinking about someone too.
+
+Someone I probably shouldn't be thinking about this much.
+
+Someone who somehow keeps crossing my mind
+when I least expect it.
+
+Anyway...
+
+That's not what this is about.
+
+You wanted to know who YOUR crush is, right?
+
+So I'm finally going to tell you.
+
+I've kept it to myself long enough.
+
+And maybe...
+
+after I tell you,
+you'll understand why I was so sure.
+
+The person is...`;
+
+
+let i = 0;
+
+
+/* Open the letter */
+
+function openLetter() {
+
+  document.getElementById("envelope").style.display = "none";
+
+  document.getElementById("letter").style.display = "block";
+
+  typeWriter();
+
+}
+
+
+/* Typing animation */
+
+function typeWriter() {
+
+  if (i < text.length) {
+
+    document.getElementById("message").innerHTML +=
+      text.charAt(i);
+
+    i++;
+
+    setTimeout(typeWriter, 28);
+
+  }
+
+}
+
+
+/* Reveal the prank */
+
+function reveal() {
+
+  document.getElementById("letter").style.display = "none";
+
+  document.getElementById("reveal").style.display = "block";
+
+}
+
+</script>
+
+</body>
+    </html>
